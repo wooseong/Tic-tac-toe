@@ -13,7 +13,7 @@ namespace tictactoe_16
         {
             String str;
             int n;
-            int[,] arr;
+            int[] arr;
             arr = new int[10];
             Random r = new Random();
             r.Next(25);
