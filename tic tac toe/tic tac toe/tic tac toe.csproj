@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="VS_Com.cs" />
     <Compile Include="VS_Player.cs" />

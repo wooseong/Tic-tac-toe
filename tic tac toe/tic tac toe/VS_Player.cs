@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,6 @@ class VS_Player
     static char[] game_Board = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
     static int player = 0;
     static int choice;
-
     static int flag = 0;
     
     private static void Board()
