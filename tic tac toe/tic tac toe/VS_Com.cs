@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tic_tac_toe
 {
-    class Class1
+    class vs_Com
     {
     }
 }
