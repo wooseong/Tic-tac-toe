@@ -1,4 +1,3 @@
-C:\Users\신우성\Documents\세종대\En#\과제2\tic tac toe\tic tac toe\obj\Debug\tic tac toe.csprojResolveAssemblyReference.cache
 C:\Users\신우성\Documents\세종대\En#\과제2\tic tac toe\tic tac toe\bin\Debug\tic tac toe.exe.config
 C:\Users\신우성\Documents\세종대\En#\과제2\tic tac toe\tic tac toe\bin\Debug\tic tac toe.exe
 C:\Users\신우성\Documents\세종대\En#\과제2\tic tac toe\tic tac toe\bin\Debug\tic tac toe.pdb

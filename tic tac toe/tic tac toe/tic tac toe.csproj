@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="checkwin.cs" />
+    <Compile Include="game_board.cs" />
+    <Compile Include="game_player.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="Menu_list.cs" />
+    <Compile Include="reset.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="VS_Com.cs" />
-    <Compile Include="VS_Player.cs" />
+    <Compile Include="VS_player.cs" />
     <Compile Include="Program %281%29.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

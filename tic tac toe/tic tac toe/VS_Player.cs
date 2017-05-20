@@ -7,137 +7,98 @@ using System.Threading.Tasks;
 using System.Threading;
 
 
-class VS_Player
+class VS_player
 {
-    static char[] game_Board = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-    static int player = 0;
+    static int playerturn;
     static int choice;
-    static int flag = 0;
-    
-    private static void Board()
-    {
-        Console.WriteLine("     |     |      ");
-        Console.WriteLine("  {0}  |  {1}  |  {2}", game_Board[1], game_Board[2], game_Board[3]);
-        Console.WriteLine("_____|_____|_____ ");
-        Console.WriteLine("     |     |      ");
-        Console.WriteLine("  {0}  |  {1}  |  {2}", game_Board[4], game_Board[5], game_Board[6]);
-        Console.WriteLine("_____|_____|_____ ");
-        Console.WriteLine("     |     |      ");
-        Console.WriteLine("  {0}  |  {1}  |  {2}", game_Board[7], game_Board[8], game_Board[9]);
-        Console.WriteLine("     |     |      ");
-    }
-    
-    private static int CheckWin()
-    {
-        //Winning Condition For First Row   
-        if (game_Board[1] == game_Board[2] && game_Board[2] == game_Board[3])
-        {
-            return 1;
-        }
-        //Winning Condition For Second Row   
-        else if (game_Board[4] == game_Board[5] && game_Board[5] == game_Board[6])
-        {
-            return 1;
-        }
-        //Winning Condition For Third Row   
-        else if (game_Board[6] == game_Board[7] && game_Board[7] == game_Board[8])
-        {
-            return 1;
-        }
-
-        //Winning Condition For First Column       
-        else if (game_Board[1] == game_Board[4] && game_Board[4] == game_Board[7])
-        {
-            return 1;
-        }
-        //Winning Condition For Second Column  
-        else if (game_Board[2] == game_Board[5] && game_Board[5] == game_Board[8])
-        {
-            return 1;
-        }
-        //Winning Condition For Third Column  
-        else if (game_Board[3] == game_Board[6] && game_Board[6] == game_Board[9])
-        {
-            return 1;
-        }
- 
-        else if (game_Board[1] == game_Board[5] && game_Board[5] == game_Board[9])
-        {
-            return 1;
-        }
-        else if (game_Board[3] == game_Board[5] && game_Board[5] == game_Board[7])
-        {
-            return 1;
-        }
-
-        // If all the cells or values filled with X or O then any player has won the match  
-        else if (game_Board[1] != '1' && game_Board[2] != '2' && game_Board[3] != '3' && game_Board[4] != '4' && game_Board[5] != '5' && game_Board[6] != '6' && game_Board[7] != '7' && game_Board[8] != '8' && game_Board[9] != '9')
-        {
-            return -1;
-        }
-
-        else
-        {
-            return 0;
-        }
-
-    }
-
+    static string choicecheck;
+    static int gamedecision = 0;
+    Random random = new Random();
+    private string[] player = new string[2];
 
     public void vs_player()
     {
+        playerturn = random.Next(2);// 0 or 1
+        Console.Clear();
+        Console.Write("\n  player1 : ");
+        player[0] = Console.ReadLine();
+        Console.Clear();
+        Console.Write("\n  player2 : ");
+        player[1] = Console.ReadLine();
+        Console.Clear();
+
+        Console.WriteLine("\n  차례는 랜덤으로 정해집니다....\n");
+        Thread.Sleep(500);
+
+        if (playerturn == 0)
+            Console.WriteLine("  {0}님이 선공입니다. : O", player[0]);
+        else
+            Console.WriteLine("  {0}님이 선공입니다. : X", player[1]);
+
+        Thread.Sleep(1500);
+
         do
         {
-            Console.Clear();// whenever loop will be again start then screen will be clear  
-            Console.WriteLine("Player1:X and Player2:O");
-            Console.WriteLine("\n");
-            if (player % 2 == 0)//checking the chance of the player  
-            {
-                Console.WriteLine("Player 2 Chance");
-            }
-            else
-            {
-                Console.WriteLine("Player 1 Chance");
-            }
-            Console.WriteLine("\n");
-            Board();// calling the board Function  
-            choice = int.Parse(Console.ReadLine());//Taking users choice   
+            Console.Clear();
+            Console.WriteLine("\n    {0}    VS    {1}    \n", player[0], player[1]);
+            game_board.Board();
 
-            // checking that position where user want to run is marked (with X or O) or not  
-            if (game_Board[choice] != 'X' && game_Board[choice] != 'O')
-            {
-                if (player % 2 == 0) //if chance is of player 2 then mark O else mark X  
+            if (playerturn == 0) // player1의 차례  
+                Console.WriteLine("\n  {0}님의 턴입니다.", player[0]);
+            else // player2의 차례
+                Console.WriteLine("\n  {0}님의 턴입니다.", player[1]);
+
+            Console.Write("  ");
+            choicecheck = Console.ReadLine();
+
+            if (!(choicecheck.Equals("1") || choicecheck.Equals("2") || choicecheck.Equals("3") ||
+                choicecheck.Equals("4") || choicecheck.Equals("5") || choicecheck.Equals("6") ||
+                choicecheck.Equals("7") || choicecheck.Equals("8") || choicecheck.Equals("9")))
                 {
-                    game_Board[choice] = 'O';
-                    player++;
+                    Console.WriteLine("\n  잘못입력하셨습니다.");
+                    Console.WriteLine("  다시 선택하여 주십시오.....");
+                    Thread.Sleep(1000);
+                    continue;
+            }
+
+            choice = int.Parse(choicecheck);
+
+            if (game_board.game_Board[choice] != 'X' && game_board.game_Board[choice] != 'O') // 아무도 체크 안한 곳이면
+            {
+                if (playerturn == 0)
+                {
+                    game_board.game_Board[choice] = 'O';
+                    playerturn = 1;
                 }
                 else
                 {
-                    game_Board[choice] = 'X';
-                    player++;
+                    game_board.game_Board[choice] = 'X';
+                    playerturn = 0;
                 }
             }
-            else //If there is any possition where user want to run and that is already marked then show message and load board again  
+            else // 누군가 이미 체크한 곳이면
             {
-                Console.WriteLine("Sorry the row {0} is already marked with {1}", choice, game_Board[choice]);
-                Console.WriteLine("\n");
-                Console.WriteLine("Please wait 2 second board is loading again.....");
-                Thread.Sleep(2000);
+                Console.WriteLine("\n  이미 선택이 되어진 자리입니다.");
+                Console.WriteLine("  다시 선택하여 주십시오.....");
+                Thread.Sleep(1300);
+                continue;
             }
-            flag = CheckWin();// calling of check win  
-        } while (flag != 1 && flag != -1);// This loof will be run until all cell of the grid is not marked with X and O or some player is not win  
+            gamedecision = checkwin.Checkwin();
+        } while (gamedecision != 1 && gamedecision != -1);
 
-        Console.Clear();// clearing the console  
-        Board();// getting filled board again  
+        Console.Clear();
+        Console.WriteLine();
+        game_board.Board();
 
-        if (flag == 1)// if flag value is 1 then some one has win or means who played marked last time which has win  
+        if (gamedecision == 1)
         {
-            Console.WriteLine("Player {0} has won", (player % 2) + 1);
+            Console.WriteLine("\n  {0}님이 이겼습니다.", player[(playerturn+1) % 2]);
         }
-        else// if flag value is -1 the match will be draw and no one is winner  
+        else
         {
-            Console.WriteLine("Draw");
+            Console.WriteLine("\n  Draw");
         }
         Console.ReadLine();
+        reset.Reset();
     }
 }

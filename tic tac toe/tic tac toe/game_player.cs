@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tic_tac_toe
+class game_player
 {
-    class vs_Com
-    {
-    }
 }
