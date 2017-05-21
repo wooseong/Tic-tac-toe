@@ -10,6 +10,7 @@ class com
 {
     private static int random_choice;
     static Random random = new Random();
+
     public static int choice_com()
     {
         if ('X' == game_board.game_Board[2] && game_board.game_Board[2] == game_board.game_Board[3] && game_board.game_Board[1] == '1')

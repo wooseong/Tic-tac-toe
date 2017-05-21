@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,9 @@ class Menu_list
     private VS_com withcom;
 
     private int player_set = 0;
-    private int[] game_score = { 0, 0, 0, 0 };// draw, player1, player2, com
-
+    
+    private int who_win;// draw, player1, player2, com
+    
     private int menu_number, vsplayer_menu, vscom_menu;
     private string menu_number_check, vsplayer_menu_check, vscom_menu_check;
 
@@ -83,7 +85,9 @@ class Menu_list
 
                     else if (vscom_menu == 2)
                     {
-                        game_score[withcom.vs_com()]++;
+                        who_win = withcom.vs_com();
+                        if (who_win == 1)
+                            Score.vs_com_score[0]++;
                         break;
                     }
                     else if (vscom_menu == 3)
@@ -163,7 +167,11 @@ class Menu_list
                     }
                     else if (vsplayer_menu == 3)
                     {
-                        game_score[withplayer.vs_player()]++;
+                        who_win = withplayer.vs_player();
+                        if (who_win == 1)
+                            Score.vs_player_score[0] = Convert.ToInt32(Score.vs_player_score[0]) + 1;
+                        else if (who_win == 2)
+                            Score.vs_player_score[1] = Convert.ToInt32(Score.vs_player_score[0]) + 1;
                         break;
                     }
                     else if (vsplayer_menu == 4)
@@ -177,7 +185,7 @@ class Menu_list
             else if (menu_number == 3)
             {
                 Console.Clear();
-                Score.show_score(game_score, player_set);
+                Score.show_score(player_set);
             }
 
         } while (menu_number != 4);
