@@ -14,39 +14,32 @@ class VS_player
     static string choicecheck;
     static int gamedecision = 0;
     Random random = new Random();
-    private string[] player = new string[2];
 
-    public void vs_player()
+    public int vs_player()
     {
         playerturn = random.Next(2);// 0 or 1
-        Console.Clear();
-        Console.Write("\n  player1 : ");
-        player[0] = Console.ReadLine();
-        Console.Clear();
-        Console.Write("\n  player2 : ");
-        player[1] = Console.ReadLine();
-        Console.Clear();
 
+        Console.Clear();
         Console.WriteLine("\n  차례는 랜덤으로 정해집니다....\n");
         Thread.Sleep(500);
 
         if (playerturn == 0)
-            Console.WriteLine("  {0}님이 선공입니다. : O", player[0]);
+            Console.WriteLine("  {0}님이 선공입니다. : O", player1.player_name);
         else
-            Console.WriteLine("  {0}님이 선공입니다. : X", player[1]);
+            Console.WriteLine("  {0}님이 선공입니다. : X", player2.player_name);
 
         Thread.Sleep(1500);
 
         do
         {
             Console.Clear();
-            Console.WriteLine("\n    {0}    VS    {1}    \n", player[0], player[1]);
+            Console.WriteLine("\n    {0}    VS    {1}    \n", player1.player_name, player2.player_name);
             game_board.Board();
 
             if (playerturn == 0) // player1의 차례  
-                Console.WriteLine("\n  {0}님의 턴입니다.", player[0]);
+                Console.WriteLine("\n  {0}님의 턴입니다.", player1.player_name);
             else // player2의 차례
-                Console.WriteLine("\n  {0}님의 턴입니다.", player[1]);
+                Console.WriteLine("\n  {0}님의 턴입니다.", player2.player_name);
 
             Console.Write("  ");
             choicecheck = Console.ReadLine();
@@ -92,13 +85,28 @@ class VS_player
 
         if (gamedecision == 1)
         {
-            Console.WriteLine("\n  {0}님이 이겼습니다.", player[(playerturn+1) % 2]);
+            if (playerturn == 1)
+            {
+                Console.WriteLine("\n  {0}님이 이겼습니다.", player1.player_name);
+                Console.ReadLine();
+                reset.Reset();
+                return 1;
+            }
+            else if (playerturn == 0)
+            {
+                Console.WriteLine("\n  {0}님이 이겼습니다.", player2.player_name);
+                Console.ReadLine();
+                reset.Reset();
+                return 2;
+            }
         }
         else
         {
             Console.WriteLine("\n  Draw");
+            Console.ReadLine();
+            reset.Reset();
+            return 0;
         }
-        Console.ReadLine();
-        reset.Reset();
+        return 0;
     }
 }
