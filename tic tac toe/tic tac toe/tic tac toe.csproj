@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="checkwin.cs" />
+    <Compile Include="com.cs" />
     <Compile Include="game_board.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Menu_list.cs" />

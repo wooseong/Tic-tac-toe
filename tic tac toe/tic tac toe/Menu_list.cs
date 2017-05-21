@@ -11,7 +11,7 @@ class Menu_list
     private VS_com withcom;
 
     private int player_set = 0;
-    private int[] game_score = { 0, 0, 0, 0};// draw, player1, player2, com
+    private int[] game_score = { 0, 0, 0, 0 };// draw, player1, player2, com
 
     private int menu_number, vsplayer_menu, vscom_menu;
     private string menu_number_check, vsplayer_menu_check, vscom_menu_check;
@@ -59,10 +59,11 @@ class Menu_list
                     Console.Clear();
                     Console.WriteLine("\n  1. player1의 이름 변경");
                     Console.WriteLine("  2. Game start!!");
+                    Console.WriteLine("  3. 뒤로가기");
 
                     vscom_menu_check = Console.ReadLine();
 
-                    if  (!(vscom_menu_check.Equals("1") || vscom_menu_check.Equals("2")) )
+                    if (!(vscom_menu_check.Equals("1") || vscom_menu_check.Equals("2") || vscom_menu_check.Equals("3")))
                     {
 
                         Console.WriteLine("  잘못입력하셨습니다.");
@@ -85,6 +86,9 @@ class Menu_list
                         game_score[withcom.vs_com()]++;
                         break;
                     }
+                    else if (vscom_menu == 3)
+                        break;
+
                 } while (true);
             }
 
@@ -95,14 +99,34 @@ class Menu_list
                 {
                     Console.Clear();
                     player1.player1_name();
-                    Console.Clear();
-                    player2.player2_name();
+                    do
+                    {
+                        Console.Clear();
+                        player2.player2_name();
+                        if ((player2.player_name.Equals(player1.player_name)))
+                        {
+                            Console.WriteLine("player1과 이름이 동일합니다.");
+                            Console.WriteLine("다른 이름으로 입력해주십시오");
+                            Thread.Sleep(500);
+                        }
+                        else break;
+                    } while (true);
                     player_set = 2;
                 }
                 if (player_set == 1)
                 {
-                    Console.Clear();
-                    player2.player2_name();
+                    do
+                    {
+                        Console.Clear();
+                        player2.player2_name();
+                        if ((player2.player_name.Equals(player1.player_name)))
+                        {
+                            Console.WriteLine("player1과 이름이 동일합니다.");
+                            Console.WriteLine("다른 이름으로 입력해주십시오");
+                            Thread.Sleep(1000);
+                        }
+                        else break;
+                    } while (true);
                     player_set = 2;
                 }
                 do
@@ -111,15 +135,16 @@ class Menu_list
                     Console.WriteLine("\n  1. player1의 이름 변경");
                     Console.WriteLine("  2. player2의 이름 변경");
                     Console.WriteLine("  3. Game start!!");
+                    Console.WriteLine("  4. 뒤로가기");
 
                     vsplayer_menu_check = Console.ReadLine();
 
-                    if (!(vsplayer_menu_check.Equals("1") || vsplayer_menu_check.Equals("2") || vsplayer_menu_check.Equals("3")))
+                    if (!(vsplayer_menu_check.Equals("1") || vsplayer_menu_check.Equals("2") || vsplayer_menu_check.Equals("3") || vsplayer_menu_check.Equals("4")))
                     {
 
                         Console.WriteLine("  잘못입력하셨습니다.");
                         Console.WriteLine("  다시 선택하여 주십시오.....");
-                        Thread.Sleep(500);
+                        Thread.Sleep(1000);
                         continue;
 
                     }
@@ -141,6 +166,9 @@ class Menu_list
                         game_score[withplayer.vs_player()]++;
                         break;
                     }
+                    else if (vsplayer_menu == 4)
+                        break;
+
                 } while (true);
 
             }
@@ -148,9 +176,10 @@ class Menu_list
 
             else if (menu_number == 3)
             {
-                Score.show_score(game_score);
+                Console.Clear();
+                Score.show_score(game_score, player_set);
             }
-            
+
         } while (menu_number != 4);
     }
 }

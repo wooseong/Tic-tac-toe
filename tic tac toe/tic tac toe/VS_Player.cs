@@ -37,9 +37,9 @@ class VS_player
             game_board.Board();
 
             if (playerturn == 0) // player1의 차례  
-                Console.WriteLine("\n  {0}님의 턴입니다.", player1.player_name);
+                Console.WriteLine("\n  {0}님의 턴입니다. : O", player1.player_name);
             else // player2의 차례
-                Console.WriteLine("\n  {0}님의 턴입니다.", player2.player_name);
+                Console.WriteLine("\n  {0}님의 턴입니다. : X", player2.player_name);
 
             Console.Write("  ");
             choicecheck = Console.ReadLine();
