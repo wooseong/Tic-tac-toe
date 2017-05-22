@@ -16,10 +16,12 @@ class checkwin
         {
             return 1;
         }
-        else if (game_board.game_Board[6] == game_board.game_Board[7] && game_board.game_Board[7] == game_board.game_Board[8])
+        else if (game_board.game_Board[7] == game_board.game_Board[8] && game_board.game_Board[8] == game_board.game_Board[9])
         {
             return 1;
         }
+
+
         else if (game_board.game_Board[1] == game_board.game_Board[4] && game_board.game_Board[4] == game_board.game_Board[7])
         {
             return 1;
@@ -32,6 +34,8 @@ class checkwin
         {
             return 1;
         }
+
+
         else if (game_board.game_Board[1] == game_board.game_Board[5] && game_board.game_Board[5] == game_board.game_Board[9])
         {
             return 1;
